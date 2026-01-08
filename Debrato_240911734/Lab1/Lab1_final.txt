@@ -86,5 +86,8 @@ b.txt  vghi
 4ITA2@debian:~/Debrato_240911734/Lab1$ touch Lab1_3.txt
 4ITA2@debian:~/Debrato_240911734/Lab1$ nano Lab1_3.txt 
 4ITA2@debian:~/Debrato_240911734/Lab1$ nano Lab1_final.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ date
+Thursday 08 January 2026 03:25:31 PM IST
+
 
 

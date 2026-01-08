@@ -19,3 +19,6 @@ a1.txt  a2.txt  abcd  abcdef  a.txt
 b.txt  vghi
 4ITA2@debian:~/Debrato_240911734/Lab1/q3$ cd ..
 4ITA2@debian:~/Debrato_240911734/Lab1$ touch Lab1_3.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ date
+Thursday 08 January 2026 03:25:31 PM IST
+
