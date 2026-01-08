@@ -1,0 +1,90 @@
+4ITA2@debian:~$ pwd
+/home/4ITA2
+4ITA2@debian:~$ mkdir Debrato_240911734
+4ITA2@debian:~$ cd Debrato_240911734/
+4ITA2@debian:~/Debrato_240911734$ mkdir Lab1
+4ITA2@debian:~/Debrato_240911734$ cd Lab1/
+4ITA2@debian:~/Debrato_240911734/Lab1$ touch Lab1_1.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ man cd
+No manual entry for cd
+4ITA2@debian:~/Debrato_240911734/Lab1$ man touch
+4ITA2@debian:~/Debrato_240911734/Lab1$ 
+4ITA2@debian:~/Debrato_240911734/Lab1$ nano Lab1_1.txt 
+4ITA2@debian:~/Debrato_240911734/Lab1$ cat Lab1_1.txt 
+Hi Debrato here
+4ITA2@debian:~/Debrato_240911734/Lab1$ echo "Hello"
+Hello
+4ITA2@debian:~/Debrato_240911734/Lab1$ nano Lab1_1.txt 
+4ITA2@debian:~/Debrato_240911734/Lab1$ touch text1.txt       
+4ITA2@debian:~/Debrato_240911734/Lab1$ echo "hello" | text1.txt
+bash: text1.txt: command not found
+4ITA2@debian:~/Debrato_240911734/Lab1$ echo "hello" > text1.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ cat text1.txt 
+hello
+4ITA2@debian:~/Debrato_240911734/Lab1$ head -n 5 Lab1_1.txt 
+4ITA2@debian:~$ pwd
+/home/4ITA2
+4ITA2@debian:~$ mkdir Debrato_240911734
+4ITA2@debian:~$ cd Debrato_240911734/
+4ITA2@debian:~/Debrato_240911734$ mkdir Lab1
+4ITA2@debian:~/Debrato_240911734/Lab1$ tail -c 5 Lab1_1.txt 
+b1$ 
+4ITA2@debian:~/Debrato_240911734/Lab1$ touch text2.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ cat text2.txt 
+4ITA2@debian:~/Debrato_240911734/Lab1$ mkdir tmp
+4ITA2@debian:~/Debrato_240911734/Lab1$ cat text1.txt/tmp 
+cat: text1.txt/tmp: Not a directory
+4ITA2@debian:~/Debrato_240911734/Lab1$ cp text1.txt/tmp 
+cp: missing destination file operand after 'text1.txt/tmp'
+Try 'cp --help' for more information.
+4ITA2@debian:~/Debrato_240911734/Lab1$ cp text1.txt tmp/ 
+4ITA2@debian:~/Debrato_240911734/Lab1$ ls
+Lab1_1.txt  text1.txt  text2.txt  tmp
+4ITA2@debian:~/Debrato_240911734/Lab1$ cd tmp
+4ITA2@debian:~/Debrato_240911734/Lab1/tmp$ ls
+text1.txt
+4ITA2@debian:~/Debrato_240911734/Lab1/tmp$ cd ..
+4ITA2@debian:~/Debrato_240911734/Lab1$ mv tmp temp
+4ITA2@debian:~/Debrato_240911734/Lab1$ ls
+Lab1_1.txt  temp  text1.txt  text2.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ mv text1.txt text2.txt temp/
+4ITA2@debian:~/Debrato_240911734/Lab1$ ls
+Lab1_1.txt  temp
+4ITA2@debian:~/Debrato_240911734/Lab1$ rm temp
+rm: cannot remove 'temp': Is a directory
+4ITA2@debian:~/Debrato_240911734/Lab1$ rm -rf  temp
+4ITA2@debian:~/Debrato_240911734/Lab1$ ls
+Lab1_1.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ mkdir del
+4ITA2@debian:~/Debrato_240911734/Lab1$ ls
+del  Lab1_1.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ rmdir del
+4ITA2@debian:~/Debrato_240911734/Lab1$ ls
+Lab1_1.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ find Lab1_1.txt
+Lab1_1.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ nano Lab1_2.txt 
+4ITA2@debian:~/Debrato_240911734/Lab1$ 
+4ITA2@debian:~/Debrato_240911734/Lab1$ mkdir q3
+4ITA2@debian:~/Debrato_240911734/Lab1$ ls
+Lab1_1.txt  Lab1_2.txt  q3
+4ITA2@debian:~/Debrato_240911734/Lab1$ cd q3/
+4ITA2@debian:~/Debrato_240911734/Lab1/q3$ touch a1.txt a2.txt a.txt b.txt abcd abcdef vghi
+4ITA2@debian:~/Debrato_240911734/Lab1/q3$ ls
+a1.txt  a2.txt  abcd  abcdef  a.txt  b.txt  vghi
+4ITA2@debian:~/Debrato_240911734/Lab1/q3$ ls *.txt
+a1.txt  a2.txt  a.txt  b.txt
+4ITA2@debian:~/Debrato_240911734/Lab1/q3$ ls *[0-9]*
+a1.txt  a2.txt
+4ITA2@debian:~/Debrato_240911734/Lab1/q3$ ls ????*
+a1.txt  a2.txt  abcd  abcdef  a.txt  b.txt  vghi
+4ITA2@debian:~/Debrato_240911734/Lab1/q3$ ls [aeiou]*
+a1.txt  a2.txt  abcd  abcdef  a.txt
+4ITA2@debian:~/Debrato_240911734/Lab1/q3$ ls [!aeiou]*
+b.txt  vghi
+4ITA2@debian:~/Debrato_240911734/Lab1/q3$ cd ..
+4ITA2@debian:~/Debrato_240911734/Lab1$ touch Lab1_3.txt
+4ITA2@debian:~/Debrato_240911734/Lab1$ nano Lab1_3.txt 
+4ITA2@debian:~/Debrato_240911734/Lab1$ nano Lab1_final.txt
+
+
