@@ -1,0 +1,4 @@
+1,deb,he
+2,rai,she
+3,ary,it
+

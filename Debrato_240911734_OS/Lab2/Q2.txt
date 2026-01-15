@@ -1,0 +1,118 @@
+4ITA2@debian:~/Debrato_240911734$ 4ITA2@debian:~$ date
+Thursday 15 January 2026 02:02:15 PM IST
+4ITA2@debian:~$ cd De
+Debrato_240911734/ Desktop/           
+4ITA2@debian:~$ cd Debrato_240911734/
+4ITA2@debian:~/Debrato_240911734$ echo "1. Execute all the commands explained in this section and write the output.(5)"
+1. Execute all the commands explained in this section and write the output.(5)
+4ITA2@debian:~/Debrato_240911734$ nano q1.txt
+4ITA2@debian:~/Debrato_240911734$ cat q1.txt 
+abc
+apple
+fruit
+banana
+juice
+
+4ITA2@debian:~/Debrato_240911734$ grep a q1.txt 
+abc
+apple
+banana
+4ITA2@debian:~/Debrato_240911734$ grep -x a q1.txt 
+4ITA2@debian:~/Debrato_240911734$ grep -x abc q1.txt 
+abc
+4ITA2@debian:~/Debrato_240911734$ man grep
+4ITA2@debian:~/Debrato_240911734$ grep -o a q1.txt 
+a
+a
+a
+a
+a
+4ITA2@debian:~/Debrato_240911734$ man sort
+4ITA2@debian:~/Debrato_240911734$ sort -o q1.txt q1_o.txt
+sort: cannot read: q1_o.txt: No such file or directory
+4ITA2@debian:~/Debrato_240911734$ touch q1_o.txt 
+4ITA2@debian:~/Debrato_240911734$ sort -o q1.txt q1_o.txt
+4ITA2@debian:~/Debrato_240911734$ cat q1.txt 
+4ITA2@debian:~/Debrato_240911734$ cat q1_o.txt 
+4ITA2@debian:~/Debrato_240911734$ nano q1.txt
+4ITA2@debian:~/Debrato_240911734$ cat q1.txt 
+abc
+apple
+banana
+fruits
+juice
+4ITA2@debian:~/Debrato_240911734$ sort q1.txt > q1_o.txt
+                                       ^C
+4ITA2@debian:~/Debrato_240911734$ date
+Thursday 15 January 2026 03:00:23 PM IST
+4ITA2@debian:~/Debrato_240911734$ echo "2. Write grep commands to do the following activities:
+• To select the lines from a file that have exactly two characters.
+• To select the lines from a file that start with the upper case letter.
+• To select the lines from a file that end with a period.
+• To select the lines in a file that has one or more blank spaces.
+• To select the lines in a file and direct them to another file which has digits as
+one of the characters in that line."
+2. Write grep commands to do the following activities:
+• To select the lines from a file that have exactly two characters.
+• To select the lines from a file that start with the upper case letter.
+• To select the lines from a file that end with a period.
+• To select the lines in a file that has one or more blank spaces.
+• To select the lines in a file and direct them to another file which has digits as
+one of the characters in that line.
+4ITA2@debian:~/Debrato_240911734$ nano q2.txt
+4ITA2@debian:~/Debrato_240911734$ man grep
+4ITA2@debian:~/Debrato_240911734$ grep -x "??" q2.txt
+4ITA2@debian:~/Debrato_240911734$ grep -Ex "??" q2.txt
+grep: warning: ? at start of expression
+grep: warning: ? at start of expression
+4ITA2@debian:~/Debrato_240911734$ grep -E "??" q2.txt
+grep: warning: ? at start of expression
+grep: warning: ? at start of expression
+hello
+ab
+abc
+a
+b
+c
+hi i am deb.
+what to do?
+1 what
+what 1
+4ITA2@debian:~/Debrato_240911734$ grep -E "^..$" q2.txt 
+ab
+4ITA2@debian:~/Debrato_240911734$ nano q2.txt
+4ITA2@debian:~/Debrato_240911734$ cat q2.txt                
+hello
+ab
+abc
+HELLO
+hELLO
+bYE
+ybe
+Bye
+a
+b
+c
+hi i am deb.
+what to do?
+1 what
+what 1
+4ITA2@debian:~/Debrato_240911734$ grep -E "^[A-Z]*$" q2.txt 
+
+HELLO
+4ITA2@debian:~/Debrato_240911734$ grep -E "^[A-Z]" q2.txt 
+HELLO
+Bye
+4ITA2@debian:~/Debrato_240911734$ grep  "\.$" q2.txt 
+hi i am deb.
+4ITA2@debian:~/Debrato_240911734$ grep -E " +" q2.txt 
+hi i am deb.
+what to do?
+1 what
+what 1
+4ITA2@debian:~/Debrato_240911734$ grep "[0-9]" q2.txt > q2_o.txt
+4ITA2@debian:~/Debrato_240911734$ cat q2_o.txt 
+1 what
+what 1
+4ITA2@debian:~/Debrato_240911734$ nano Q2.txt
+

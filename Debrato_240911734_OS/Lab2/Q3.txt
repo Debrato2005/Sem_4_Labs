@@ -1,0 +1,59 @@
+4ITA2@debian:~/Debrato_240911734$ date
+Thursday 15 January 2026 03:33:10 PM IST
+4ITA2@debian:~/Debrato_240911734$ echo "3. Create file studentInformation.txt using vi editor which contains details in the
+following format.
+RegistrationNo:Name:Department:Branch:Section:Sub1:Sub2:Sub3
+1234:XYZ:ICT:CCE:A:80:60:70 … (add atleast 10 rows)
+i) Display the number students( only count) belonging to ICT department.
+ii) Replace all occurrences of IT branch with “Information Technology” and save
+the output to ITStudents.txt
+iii) Display the average marks of student with the given registration number
+“1234” (or any specific existing number)."
+3. Create file studentInformation.txt using vi editor which contains details in the
+following format.
+RegistrationNo:Name:Department:Branch:Section:Sub1:Sub2:Sub3
+1234:XYZ:ICT:CCE:A:80:60:70 … (add atleast 10 rows)
+i) Display the number students( only count) belonging to ICT department.
+ii) Replace all occurrences of IT branch with “Information Technology” and save
+the output to ITStudents.txt
+iii) Display the average marks of student with the given registration number
+“1234” (or any specific existing number).
+4ITA2@debian:~/Debrato_240911734$ nano studentInformation.txt
+4ITA2@debian:~/Debrato_240911734$ grep "ict" studentInformation.txt | wc -w
+5
+4ITA2@debian:~/Debrato_240911734$ awk -F':' '$4 == "it" { $4 = "Information Technology" } { print }' studentInformation.txt > itstu.txt
+4ITA2@debian:~/Debrato_240911734$ cat itstu.txt 
+RegistrationNo : Name : Department : Branch : Section : Sub1 : Sub2 : Sub3
+1 deb ict Information Technology a 45 47 45
+2:rai:chem:chem:b:30:5:45
+3:ary:ict:cce:a:40:20:10
+4 ani ict Information Technology b 50 55 60
+5:oja:ece:ece:a:42:38:40
+6:rhan:ict:cce:c:60:58:62
+7:nea:mech:mech:b:35:40:45
+8:kan:civil:civil:a:48:50:46
+9 sun ict Information Technology c 55 52 58
+10:vik:chem:chem:b:30:35:40
+
+4ITA2@debian:~/Debrato_240911734$ awk -F':' 'BEGIN { OFS=":" } $4 == "it" { $4 = "Information Technology" } { print }' studentInformation.txt > itstu.txt
+4ITA2@debian:~/Debrato_240911734$ cat itstu.txt 
+RegistrationNo : Name : Department : Branch : Section : Sub1 : Sub2 : Sub3
+1:deb:ict:Information Technology:a:45:47:45
+2:rai:chem:chem:b:30:5:45
+3:ary:ict:cce:a:40:20:10
+4:ani:ict:Information Technology:b:50:55:60
+5:oja:ece:ece:a:42:38:40
+6:rhan:ict:cce:c:60:58:62
+7:nea:mech:mech:b:35:40:45
+8:kan:civil:civil:a:48:50:46
+9:sun:ict:Information Technology:c:55:52:58
+10:vik:chem:chem:b:30:35:40
+
+4ITA2@debian:~/Debrato_240911734$ awk -F':' '$1 == 1 { avg = ($6 + $7 + $8) / 3; print avg }' studentInformation.txt
+45.6667
+4ITA2@debian:~/Debrato_240911734$ awk -F':' '$1 == 5 { avg = ($6 + $7 + $8) / 3; print avg }' studentInformation.txt
+40
+4ITA2@debian:~/Debrato_240911734$ awk -F':' '$1 == 10 { avg = ($6 + $7 + $8) / 3; print avg }' studentInformation.txt
+35
+4ITA2@debian:~/Debrato_240911734$ nano Q3.txt
+
