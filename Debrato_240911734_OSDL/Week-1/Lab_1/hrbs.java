@@ -14,23 +14,76 @@
 // polymorphism, where the method call is resolved at runtime based on the actual
 // object type.
 import java.util.*;
-class room
+class Room
 {
     int rno;
     int base;
+    public Room(int rno,int base)
+    {
+        this.rno=rno;
+        this.base=base;
+    }
+    public int calculateTariff()
+    {
+        return base;
+    }
 }
-class standard extends room
+class StandardRoom extends Room
 {
-
+    int ac;
+    public StandardRoom(int rno,int base,int ac)
+    {
+        super(rno,base);
+        this.ac=ac;
+    }
+    public int calculateTariff()
+    {
+        if(ac==1)
+            return base+500;
+        else
+            return base;
+    }
 }
-class luxury extends room
+class LuxuryRoom extends Room
 {
-    
+    int amenities;
+    public LuxuryRoom(int rno,int base,int amenities)
+    {
+        super(rno,base);
+        this.amenities=amenities;
+    }
+    public int calculateTariff()
+    {
+        if(amenities==1)
+            return base+2000;
+        else
+            return base+1000;
+    }
 }
-public class hrbs 
+class Main
 {
     public static void main(String args[])
     {
-
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Standard or Luxury:");
+        String type=sc.next();
+        Room r;
+        if(type.equalsIgnoreCase("standard"))
+        {
+            int rno=sc.nextInt();
+            int base=sc.nextInt();
+            int ac=sc.nextInt();
+            r=new StandardRoom(rno,base,ac);
+        }
+        else
+        {
+            int rno=sc.nextInt();
+            int base=sc.nextInt();
+            int amenities=sc.nextInt();
+            r=new LuxuryRoom(rno,base,amenities);
+        }
+        System.out.println("Room Number: "+r.rno);
+        System.out.println("Tariff: "+r.calculateTariff());
+        sc.close();
     }
 }
