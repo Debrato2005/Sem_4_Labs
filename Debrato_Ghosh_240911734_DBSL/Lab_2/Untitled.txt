@@ -7,19 +7,19 @@ Employee (EmpNo, EmpName, Gender, Salary, Address, DNo) Department
 • Allow Gender to have one of the two values: ‘M’, ‘F’.
 soln
 create table Employee (
-EmpNo number (3) primary key, 
+EmpNo int primary key, 
 EmpName varchar(5) not null, 
 Gender char(1) check(Gender in ('M' , 'F')) not null , 
 Salary int not null, 
 Address varchar(5) not null, 
-DNo number (3) );
+DNo int );
 
 2. Create Department table with following:  
 • Make DeptNo as Primary key  
 • Make DeptName as candidate key  
 soln
-create table create table Department (
-DeptNo number (3) primary key, 
+create table Department (
+DeptNo int primary key, 
 DeptName varchar(5) unique not null, 
 Location varchar(5));
 
@@ -171,35 +171,73 @@ WHERE s.ID = t.ID
 
 
 
-16. For all students who have opted courses in 2015, find their names and course id’s with  
-soln
-
+16. For all students who have opted courses in 2015, find their names and course id’s with
 the attribute course title replaced by c-name.   
+soln 
 soln
+SELECT s.name,
+       c.course_id,
+       c.title AS c_name
+FROM student s, takes t, course c
+WHERE s.ID = t.ID
+  AND t.course_id = c.course_id
+  AND t.year = 2015;
+
 
 17. Find the names of all instructors whose salary is greater than the salary of at least one 
 instructor of CSE department and salary replaced by inst-salary. String Operations 
 (Use %, _, LIKE):   
 soln
+SELECT name,
+       salary AS inst_salary
+FROM instructor
+WHERE salary >
+      (SELECT MIN(salary)
+       FROM instructor
+       WHERE dept_name = 'Comp. Sci.');
+
+
 
 18. Find the names of all instructors whose department name includes the substring  
 ‘ch’.    
 soln
+SELECT name
+FROM instructor
+WHERE dept_name LIKE '%ch%';
+
 
 19. List the student names along with the length of the student names.   
 soln
+SELECT name,
+       LENGTH(name) AS name_length
+FROM student;
+
 
 20. List the department names and 3 characters from 3rd position of each department name   
 soln
+SELECT dept_name,
+       SUBSTRING(dept_name FROM 3 FOR 3) AS part
+FROM department;
+
 
 21. List the instructor names in upper case.   
 soln
+SELECT UPPER(name)
+FROM instructor;
+
 
 22. Replace NULL with value1(say 0) for a column in any of the table   
 soln
+SELECT name,
+       COALESCE(salary, 0) AS salary
+FROM instructor;
+
    
 23. Display the salary and salary/3 rounded to nearest hundred from Instructor.   
 soln
+SELECT salary,
+       ROUND(salary / 3, -2) AS rounded_salary
+FROM instructor;
 
 
 24. Display the birth date of all the employees in the following format:  
