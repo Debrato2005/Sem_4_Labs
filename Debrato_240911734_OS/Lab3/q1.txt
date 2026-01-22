@@ -1,0 +1,36 @@
+4ITA2@debian:~/Debrato_240911734/Lab3$ date
+Thursday 22 January 2026 02:37:20 PM IST
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano hello.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash hello.sh 
+Hello, World
+enter 2 numbers
+2 3
+ you entered a as 2 and b as 3
+c is 5
+4ITA2@debian:~/Debrato_240911734/Lab3$ echo "1. Write a shell script to find whether a given file is the directory or regular file."
+1. Write a shell script to find whether a given file is the directory or regular file.
+4ITA2@debian:~/Debrato_240911734/Lab3$ sublime q1.sh
+bash: sublime: command not found
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q1.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q1.sh
+1. Write a shell script to find whether a given file is the directory or regular file.
+enter file or directory name
+q1.sh
+q1.sh is a file
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q1.sh
+1. Write a shell script to find whether a given file is the directory or regular file.
+enter file or directory name
+q2.sh
+q2.sh  does not exist
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q1.sh
+1. Write a shell script to find whether a given file is the directory or regular file.
+enter file or directory name
+Lab2
+Lab2  does not exist
+4ITA2@debian:~/Debrato_240911734/Lab3$ mkdir q1
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q1.sh
+1. Write a shell script to find whether a given file is the directory or regular file.
+enter file or directory name
+q1
+q1 is a directory
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q1.txt

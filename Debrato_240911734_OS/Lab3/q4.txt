@@ -1,0 +1,15 @@
+4ITA2@debian:~/Debrato_240911734/Lab3$ date
+Thursday 22 January 2026 03:53:36 PM IST
+4ITA2@debian:~/Debrato_240911734/Lab3$ echo "Write a shell script to calculate the gross salary. GS=Basics + TA + 10% of Basics.
+Floating point calculations has to be performed."
+Write a shell script to calculate the gross salary. GS=Basics + TA + 10% of Basics.
+Floating point calculations has to be performed.
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q4.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q4.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q4.sh
+Write a shell script to calculate the gross salary. GS=Basics + TA + 10% of Basics.
+Floating point calculations has to be performed.
+ enter Basics and TA
+100 10
+Gross Salary = 101.00
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q4.txt

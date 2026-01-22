@@ -1,0 +1,26 @@
+4ITA2@debian:~/Debrato_240911734/Lab3$ date
+Thursday 22 January 2026 04:25:36 PM IST
+4ITA2@debian:~/Debrato_240911734/Lab3$ echo "6. Write a shell script which deletes all the even numbered lines in a text file."
+6. Write a shell script which deletes all the even numbered lines in a text file.
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q7.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano test7.txt
+4ITA2@debian:~/Debrato_240911734/Lab3$ cat test7.txt 
+Line 1
+Line 2
+Line 3
+Line 4
+Line 5
+Line 6
+
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q7.sh 
+6. Write a shell script which deletes all the even numbered lines in a text.
+
+enter file name:
+test7.txt
+Even numbered lines deleted
+4ITA2@debian:~/Debrato_240911734/Lab3$ cat test7.txt 
+Line 1
+Line 3
+Line 5
+
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q7.txt

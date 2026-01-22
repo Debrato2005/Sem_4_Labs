@@ -1,0 +1,51 @@
+4ITA2@debian:~/Debrato_240911734/Lab3$ echo "5. Write a program to copy all the files (having file extension input by the user) in the 
+current folder to the new folder input by the user. ex: user enter .text TEXT then all
+files with .text should be moved to TEXT folder. This should be done only at single
+level. i.e if the current folder contains a folder name ABC which has .txt files then
+these files should not be copied to TEXT."
+5. Write a program to copy all the files (having file extension input by the user) in the
+current folder to the new folder input by the user. ex: user enter .text TEXT then all
+files with .text should be moved to TEXT folder. This should be done only at single
+level. i.e if the current folder contains a folder name ABC which has .txt files then
+these files should not be copied to TEXT.
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q5.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q5.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ mkdir test_folder; ls; touch a.text b.text c.txt d.c; ls
+
+hello.sh  q1.sh   q2.sh   q3.sh    q4.png  q5.sh
+q1        q1.txt  q2.txt  q3_test  q4.sh   test_folder
+q1.png    q2.png  q3.png  q3.txt   q4.txt
+a.text  d.c       q1.png  q2.png  q3.png   q3.txt  q4.txt
+b.text  hello.sh  q1.sh   q2.sh   q3.sh    q4.png  q5.sh
+c.txt   q1        q1.txt  q2.txt  q3_test  q4.sh   test_folder
+4ITA2@debian:~/Debrato_240911734/Lab3$ mv test_folder/ q5_test/
+4ITA2@debian:~/Debrato_240911734/Lab3$ ls
+a.text  d.c       q1.png  q2.png  q3.png   q3.txt  q4.txt
+b.text  hello.sh  q1.sh   q2.sh   q3.sh    q4.png  q5.sh
+c.txt   q1        q1.txt  q2.txt  q3_test  q4.sh   q5_test
+4ITA2@debian:~/Debrato_240911734/Lab3$ cd q5 test
+bash: cd: too many arguments
+4ITA2@debian:~/Debrato_240911734/Lab3$ cd q5_test
+4ITA2@debian:~/Debrato_240911734/Lab3/q5_test$ ls
+4ITA2@debian:~/Debrato_240911734/Lab3/q5_test$ ls
+a.text  b.text  c.txt  d.c
+4ITA2@debian:~/Debrato_240911734/Lab3/q5_test$ bash q5.sh
+bash: q5.sh: No such file or directory
+4ITA2@debian:~/Debrato_240911734/Lab3/q5_test$ bash ../q5.sh
+5. Write a program to copy all the files (having file extension input by the user) in the 
+current folder to the new folder input by the user. ex: user enter .text TEXT then all
+files with .text should be moved to TEXT folder. This should be done only at single
+level. i.e if the current folder contains a folder name ABC which has .txt files then
+these files should not be copied to TEXT.
+enter extension
+txt
+enter new dir
+new
+done
+4ITA2@debian:~/Debrato_240911734/Lab3/q5_test$ ls
+a.text  b.text  c.txt  d.c  new
+4ITA2@debian:~/Debrato_240911734/Lab3/q5_test$ ls new/
+c.txt
+4ITA2@debian:~/Debrato_240911734/Lab3/q5_test$ cd ..
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q5.txt
+

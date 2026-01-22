@@ -1,0 +1,28 @@
+4ITA2@debian:~/Debrato_240911734/Lab3$ date
+Thursday 22 January 2026 03:36:04 PM IST
+4ITA2@debian:~/Debrato_240911734/Lab3$ echo "Write a shell script to replace all files with .txt extension with .text in the current di-
+rectory. This has to be done recursively i.e if the current folder contains a folder
+“OS” with abc.txt then it has to be changed to abc.text ( Hint: use find, mv )"
+Write a shell script to replace all files with .txt extension with .text in the current di-
+rectory. This has to be done recursively i.e if the current folder contains a folder
+“OS” with abc.txt then it has to be changed to abc.text ( Hint: use find, mv )
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q3.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ mkdir q3_test
+4ITA2@debian:~/Debrato_240911734/Lab3$ touch q3_test/1.txt q3_test/2.xt q3_test/3.txt
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q3.sh
+Write a shell script to replace all files with .txt extension with .text in the current di-
+rectory. This has to be done recursively i.e if the current folder contains a folder
+“OS” with abc.txt then it has to be changed to abc.text ( Hint: use find, mv )
+enter file or directory name
+q3
+ls: cannot access 'q3': No such file or directory
+directory does not exist 
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q3.sh
+Write a shell script to replace all files with .txt extension with .text in the current di-
+rectory. This has to be done recursively i.e if the current folder contains a folder
+“OS” with abc.txt then it has to be changed to abc.text ( Hint: use find, mv )
+enter file or directory name
+q3_test	
+1.txt  2.xt  3.txt
+1.text	2.xt  3.text
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q3.txt

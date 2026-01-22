@@ -1,0 +1,27 @@
+4ITA2@debian:~/Debrato_240911734/Lab3$ date
+Thursday 22 January 2026 03:18:02 PM IST
+4ITA2@debian:~/Debrato_240911734/Lab3$ echo "2. Write a shell script to list all files (only file names) containing the input pattern
+(string) in the folder entered by the user."
+2. Write a shell script to list all files (only file names) containing the input pattern
+(string) in the folder entered by the user.
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q2.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q2.sh
+2. Write a shell script to list all files (only file names) containing the input pattern
+(string) in the folder entered by the user.
+enter file or directory name
+/home/4ITA2/Debrato_240911734/Lab3
+enter pattern(string)
+q
+q1
+q1.sh
+q1.txt
+q2.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q2.sh
+2. Write a shell script to list all files (only file names) containing the input pattern
+(string) in the folder entered by the user.
+enter file or directory name
+^[[A^[[A^[[A^[[A^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[^[[A     
+enter pattern(string)
+2
+directory doesnt exist
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q2.txt

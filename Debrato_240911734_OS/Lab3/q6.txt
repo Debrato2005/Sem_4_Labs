@@ -1,0 +1,42 @@
+4ITA2@debian:~/Debrato_240911734/Lab3$ date
+Thursday 22 January 2026 04:19:11 PM IST
+4ITA2@debian:~/Debrato_240911734/Lab3$ echo "echo "Write a shell script to modify all occurrences of “ex:” with “Example:” in all the filespresent
+31LAB NO: 3
+in current folder only if “ex:” occurs at the start of the line or after a period (.). Example:
+if a file contains a line: “ex: this is first occurrence so should be re- placed” and “second
+ex: should not be replaced as it occurs in the middle of the sen-tence.""
+echo Write a shell script to modify all occurrences of “ex:” with “Example:” in all the filespresent
+bash: 31LAB: command not found
+bash: syntax error near unexpected token `in'
+> ^C
+4ITA2@debian:~/Debrato_240911734/Lab3$ echo "Write a shell script to modify all occurrences of \"ex:\" with \"Example:\"
+in all the files present in the current folder only if \"ex:\" occurs
+at the start of the line or after a period (.)."
+Write a shell script to modify all occurrences of "ex:" with "Example:"
+in all the files present in the current folder only if "ex:" occurs
+at the start of the line or after a period (.).
+4ITA2@debian:~/Debrato_240911734/Lab3$ date
+Thursday 22 January 2026 04:20:42 PM IST
+4ITA2@debian:~/Debrato_240911734/Lab3$ echo "Write a shell script to modify all occurrences of \"ex:\" with \"Example:\"
+in all the files present in the current folder only if \"ex:\" occurs
+at the start of the line or after a period (.)."
+Write a shell script to modify all occurrences of "ex:" with "Example:"
+in all the files present in the current folder only if "ex:" occurs
+at the start of the line or after a period (.).
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q6.sh
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q6_test.txt
+4ITA2@debian:~/Debrato_240911734/Lab3$ cat q6_test.txt 
+ex: this is first occurrence so should be replaced
+second ex: should not be replaced as it occurs in the middle of the sentence.
+This is a test.ex: this should be replaced
+4ITA2@debian:~/Debrato_240911734/Lab3$ bash q6.sh
+Write a shell script to modify all occurrences of "ex:" with "Example:"
+in all the files present in the current folder only if "ex:" occurs
+at the start of the line or after a period (.).
+modified
+4ITA2@debian:~/Debrato_240911734/Lab3$ cat q6_test.txt 
+Example: this is first occurrence so should be replaced
+second ex: should not be replaced as it occurs in the middle of the sentence.
+This is a test.Example: this should be replaced
+4ITA2@debian:~/Debrato_240911734/Lab3$ nano q6.txt
+
