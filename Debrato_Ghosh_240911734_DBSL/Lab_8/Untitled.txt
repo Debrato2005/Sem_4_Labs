@@ -1,0 +1,233 @@
+LAB EXERCISE:  
+Note: Use University DB schema for the following, unless a different DB schema is 
+explicitly specified Cursors:  
+CursorName %ISOPEN / FOUND / NOT FOUND:  
+1. The HRD manager has decided to raise the salary of all the Instructors in a given 
+department number by 5%. Whenever, any such raise is given to the instructor, a 
+record for the same is maintained in the salary_raise table. It includes the Instuctor 
+Id, the date when the raise was given and the actual raise amount. Write a PL/SQL 
+block to update the salary of each Instructor and insert a record in the salary_raise 
+table.   
+DECLARE
+    CURSOR c_gpa IS
+        SELECT gpa
+        FROM StudentTable
+        FOR UPDATE;
+
+BEGIN
+    FOR rec IN c_gpa LOOP
+
+        IF rec.gpa >= 9 THEN
+            UPDATE StudentTable
+            SET LetterGrade = 'A'
+            WHERE CURRENT OF c_gpa;
+
+        ELSIF rec.gpa >= 8 THEN
+            UPDATE StudentTable
+            SET LetterGrade = 'B'
+            WHERE CURRENT OF c_gpa;
+
+        ELSIF rec.gpa >= 7 THEN
+            UPDATE StudentTable
+            SET LetterGrade = 'C'
+            WHERE CURRENT OF c_gpa;
+
+        ELSE
+            UPDATE StudentTable
+            SET LetterGrade = 'F'
+            WHERE CURRENT OF c_gpa;
+        END IF;
+
+    END LOOP;
+
+    COMMIT;
+END;
+/
+
+salary_raise(Instructor_Id, Raise_date, Raise_amt)  
+CursorName%ROWCOUNT:  
+2. Write a PL/SQL block that will display the ID, name, dept_name  and tot_cred  of 
+the first 10 students with lowest total credit.  
+DECLARE
+    CURSOR c_stud IS
+        SELECT ID, name, dept_name, tot_cred
+        FROM student
+        ORDER BY tot_cred;
+
+    v_rec c_stud%ROWTYPE;
+BEGIN
+    OPEN c_stud;
+
+    LOOP
+        FETCH c_stud INTO v_rec;
+        EXIT WHEN c_stud%NOTFOUND OR c_stud%ROWCOUNT > 10;
+
+        DBMS_OUTPUT.PUT_LINE(
+            v_rec.ID || ' ' ||
+            v_rec.name || ' ' ||
+            v_rec.dept_name || ' ' ||
+            v_rec.tot_cred
+        );
+    END LOOP;
+
+    CLOSE c_stud;
+END;
+/
+
+ 
+Cursor For Loops:  
+3. Print the Course details and the total number of students registered for each course 
+along with the course details - (Course-id, title, dept-name, credits, 
+instructor_name, building, room-number, time-slot-id, tot_student_no )  
+DECLARE
+    CURSOR c_course IS
+        SELECT c.course_id,
+               c.title,
+               c.dept_name,
+               c.credits,
+               i.name instructor_name,
+               s.building,
+               s.room_number,
+               s.time_slot_id,
+               COUNT(t.ID) tot_student_no
+        FROM course c
+        JOIN section s
+             ON c.course_id = s.course_id
+        JOIN teaches te
+             ON s.course_id = te.course_id
+            AND s.sec_id = te.sec_id
+            AND s.semester = te.semester
+            AND s.year = te.year
+        JOIN instructor i
+             ON te.ID = i.ID
+        LEFT JOIN takes t
+             ON s.course_id = t.course_id
+            AND s.sec_id = t.sec_id
+            AND s.semester = t.semester
+            AND s.year = t.year
+        GROUP BY c.course_id, c.title, c.dept_name, c.credits,
+                 i.name, s.building, s.room_number, s.time_slot_id;
+
+BEGIN
+    FOR rec IN c_course LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            rec.course_id || ' ' ||
+            rec.title || ' Students: ' ||
+            rec.tot_student_no
+        );
+    END LOOP;
+END;
+/
+
+4. Find all students who take the course with Course-id: CS101 and if he/ she has 
+less than 30 total credit (tot-cred), deregister the student from that course. (Delete 
+the entry in Takes table)
+DECLARE
+    CURSOR c_cs IS
+        SELECT t.ID, t.sec_id, t.semester, t.year
+        FROM takes t
+        JOIN student s
+          ON s.ID = t.ID
+        WHERE t.course_id = 'CS101'
+          AND s.tot_cred < 30;
+
+BEGIN
+    FOR rec IN c_cs LOOP
+        DELETE FROM takes
+        WHERE ID = rec.ID
+          AND course_id = 'CS101'
+          AND sec_id = rec.sec_id
+          AND semester = rec.semester
+          AND year = rec.year;
+    END LOOP;
+
+    COMMIT;
+END;
+/  
+
+Where Current of:  
+5. Alter StudentTable(refer Lab No. 8 Exercise) by resetting column LetterGrade to 
+F. Then write a PL/SQL block  to update the table by mapping GPA to the 
+corresponding letter grade for each student.  
+UPDATE StudentTable
+SET LetterGrade = 'F';
+COMMIT;
+
+DECLARE
+    CURSOR c_gpa IS
+        SELECT gpa
+        FROM StudentTable
+        FOR UPDATE;
+
+BEGIN
+    FOR rec IN c_gpa LOOP
+
+        IF rec.gpa >= 9 THEN
+            UPDATE StudentTable
+            SET LetterGrade = 'A'
+            WHERE CURRENT OF c_gpa;
+
+        ELSIF rec.gpa >= 8 THEN
+            UPDATE StudentTable
+            SET LetterGrade = 'B'
+            WHERE CURRENT OF c_gpa;
+
+        ELSIF rec.gpa >= 7 THEN
+            UPDATE StudentTable
+            SET LetterGrade = 'C'
+            WHERE CURRENT OF c_gpa;
+
+        ELSE
+            UPDATE StudentTable
+            SET LetterGrade = 'F'
+            WHERE CURRENT OF c_gpa;
+        END IF;
+
+    END LOOP;
+
+    COMMIT;
+END;
+/
+
+Parameterized Cursors:  
+6. Write a PL/SQL block to print the list of Instructors teaching a specified course.  
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR c_teach (p_course VARCHAR2) IS
+        SELECT DISTINCT i.ID, i.name
+        FROM instructor i
+        JOIN teaches t
+          ON i.ID = t.ID
+        WHERE t.course_id = p_course;
+
+BEGIN
+    FOR rec IN c_teach('&course_id') LOOP
+        DBMS_OUTPUT.PUT_LINE(rec.ID || ' ' || rec.name);
+    END LOOP;
+END;
+/
+ 
+7. Write a PL/SQL block to list the students who have registered for a course taught 
+by his/her advisor.  
+DECLARE
+    CURSOR c_adv IS
+        SELECT DISTINCT s.ID, s.name
+        FROM student s
+        JOIN advisor a
+          ON s.ID = a.s_id
+        JOIN teaches t
+          ON a.i_id = t.ID
+        JOIN takes tk
+          ON s.ID = tk.ID
+         AND tk.course_id = t.course_id
+         AND tk.sec_id = t.sec_id
+         AND tk.semester = t.semester
+         AND tk.year = t.year;
+
+BEGIN
+    FOR rec IN c_adv LOOP
+        DBMS_OUTPUT.PUT_LINE(rec.ID || ' ' || rec.name);
+    END LOOP;
+END;
+/
