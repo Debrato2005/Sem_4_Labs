@@ -1,0 +1,199 @@
+PROCEDURES, FUNCTIONS & PACKAGES
+Procedures:  
+1. Write a procedure to display a message “Good Day to You”.
+  CREATE OR REPLACE PROCEDURE good_day IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Good Day to You');
+END;
+/
+
+-- Call
+BEGIN
+    good_day;
+END;
+/
+
+2. Based on the University Database Schema in Lab 2, write a procedure which takes 
+the dept_name as input parameter and lists all the instructors  associated with the 
+department as well as list all the courses offered by the department. Also, write an 
+anonymous block with the procedure call.  
+CREATE OR REPLACE PROCEDURE dept_info(p_dept IN VARCHAR2) IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('--- Instructors ---');
+    FOR i IN (SELECT name FROM instructor WHERE dept_name = p_dept) LOOP
+        DBMS_OUTPUT.PUT_LINE(i.name);
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('--- Courses ---');
+    FOR c IN (SELECT title FROM course WHERE dept_name = p_dept) LOOP
+        DBMS_OUTPUT.PUT_LINE(c.title);
+    END LOOP;
+END;
+/
+BEGIN
+    dept_info('Comp. Sci.');
+END;
+/
+
+3. Based on the University Database Schema in Lab 2, write a Pl/Sql block of code 
+that lists the most popular course (highest number of students take it) for each of 
+the departments. It should make use of a procedure course_popular which finds 
+the most popular course in the given department. 
+ CREATE OR REPLACE PROCEDURE course_popular(p_dept IN VARCHAR2) IS
+    v_course course.course_id%TYPE;
+BEGIN
+    SELECT t.course_id INTO v_course
+    FROM takes t
+    JOIN course c ON t.course_id = c.course_id
+    WHERE c.dept_name = p_dept
+    GROUP BY t.course_id
+    ORDER BY COUNT(*) DESC
+    FETCH FIRST 1 ROW ONLY;
+
+    DBMS_OUTPUT.PUT_LINE('Dept: ' || p_dept || ' Popular Course: ' || v_course);
+END;
+/
+BEGIN
+    FOR d IN (SELECT dept_name FROM department) LOOP
+        course_popular(d.dept_name);
+    END LOOP;
+END;
+/
+
+4. Based on the University Database Schema in Lab 2, write a procedure which takes 
+the dept-name as input parameter and lists all the students associated with the 
+department as well as list all the courses offered by the department. Also, write an 
+anonymous block with the procedure call. 
+CREATE OR REPLACE PROCEDURE dept_students(p_dept IN VARCHAR2) IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('--- Students ---');
+    FOR s IN (SELECT name FROM student WHERE dept_name = p_dept) LOOP
+        DBMS_OUTPUT.PUT_LINE(s.name);
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('--- Courses ---');
+    FOR c IN (SELECT title FROM course WHERE dept_name = p_dept) LOOP
+        DBMS_OUTPUT.PUT_LINE(c.title);
+    END LOOP;
+END;
+/
+BEGIN
+    dept_students('Biology');
+END;
+/
+
+Functions:  
+5. Write a function to return the Square of a given number and call it from an    
+anonymous block.  
+CREATE OR REPLACE FUNCTION square_num(n NUMBER)
+RETURN NUMBER IS
+BEGIN
+    RETURN n * n;
+END;
+/
+DECLARE
+    result NUMBER;
+BEGIN
+    result := square_num(5);
+    DBMS_OUTPUT.PUT_LINE('Square: ' || result);
+END;
+/
+
+6. Based on the University Database Schema in Lab 2, write a Pl/Sql block of code 
+that lists the highest paid Instructor in each of the Department. It should make use 
+of a function department_highest which returns the highest paid Instructor for the 
+given branch. 
+CREATE OR REPLACE FUNCTION department_highest(p_dept VARCHAR2)
+RETURN VARCHAR2 IS
+    v_name instructor.name%TYPE;
+BEGIN
+    SELECT name INTO v_name
+    FROM instructor
+    WHERE dept_name = p_dept
+      AND salary = (SELECT MAX(salary)
+                    FROM instructor
+                    WHERE dept_name = p_dept);
+
+    RETURN v_name;
+END;
+/
+BEGIN
+    FOR d IN (SELECT dept_name FROM department) LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            d.dept_name || ' -> ' || department_highest(d.dept_name)
+        );
+    END LOOP;
+END;
+/
+
+Packages:  
+7. Based on the University Database Schema in Lab 2, create a package to include 
+the following:  
+a) A named procedure to list the instructor_names of given department  
+b) A function which returns the max salary for the given department  
+c) Write a PL/SQL block to demonstrate the usage of above package components  
+CREATE OR REPLACE PACKAGE dept_pkg IS
+    PROCEDURE list_instructors(p_dept VARCHAR2);
+    FUNCTION max_salary(p_dept VARCHAR2) RETURN NUMBER;
+END dept_pkg;
+/
+CREATE OR REPLACE PACKAGE BODY dept_pkg IS
+
+    PROCEDURE list_instructors(p_dept VARCHAR2) IS
+    BEGIN
+        FOR i IN (SELECT name FROM instructor WHERE dept_name = p_dept) LOOP
+            DBMS_OUTPUT.PUT_LINE(i.name);
+        END LOOP;
+    END;
+
+    FUNCTION max_salary(p_dept VARCHAR2) RETURN NUMBER IS
+        v_sal NUMBER;
+    BEGIN
+        SELECT MAX(salary) INTO v_sal
+        FROM instructor
+        WHERE dept_name = p_dept;
+
+        RETURN v_sal;
+    END;
+
+END dept_pkg;
+/
+BEGIN
+    dept_pkg.list_instructors('Physics');
+    DBMS_OUTPUT.PUT_LINE('Max Salary: ' || dept_pkg.max_salary('Physics'));
+END;
+/
+
+Parameter Modes: IN, OUT, IN OUT  
+8. Write a PL/SQL procedure to return simple and compound interest (OUT 
+parameters) along with the Total Sum (IN OUT) i.e. Sum of Principle and Interest 
+taking as input the principle, rate of interest and number of years (IN parameters). 
+Call this procedure from an anonymous block. 
+CREATE OR REPLACE PROCEDURE interest_calc(
+    p_principal IN NUMBER,
+    p_rate IN NUMBER,
+    p_years IN NUMBER,
+    simple OUT NUMBER,
+    compound OUT NUMBER,
+    total IN OUT NUMBER
+) IS
+BEGIN
+    simple := (p_principal * p_rate * p_years) / 100;
+
+    compound := p_principal * POWER((1 + p_rate/100), p_years) - p_principal;
+
+    total := p_principal + compound;
+END;
+/
+DECLARE
+    s NUMBER;
+    c NUMBER;
+    t NUMBER := 10000;
+BEGIN
+    interest_calc(10000, 10, 2, s, c, t);
+
+    DBMS_OUTPUT.PUT_LINE('Simple: ' || s);
+    DBMS_OUTPUT.PUT_LINE('Compound: ' || c);
+    DBMS_OUTPUT.PUT_LINE('Total: ' || t);
+END;
+/
